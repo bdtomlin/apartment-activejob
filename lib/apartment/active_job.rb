@@ -11,7 +11,7 @@ module Apartment
     end
     
     def enqueue(*arguments)
-      @tenant = Apartement::Tenant.current
+      @tenant = Apartment::Tenant.current
       Apartment::Tenant.switch('public') do
         super(*arguments)
       end
