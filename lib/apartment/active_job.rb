@@ -11,13 +11,14 @@ module Apartment
     end
     
     def enqueue(*arguments)
+      @tenant = Apartement::Tenant.current
       Apartment::Tenant.switch('public') do
         super(*arguments)
       end
     end
     
     def serialize
-      super.merge('tenant' => Apartment::Tenant.current)
+      super.merge('tenant' => @tenant)
     end
   end
 end
